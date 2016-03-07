@@ -491,7 +491,6 @@ heatmap_motor = function(matrix, border_color, cellwidth, cellheight, tree_col, 
     if(length(annotation) > 0 & annotation_legend){
         elem = draw_annotation_legend(annotation, annotation_colors, border_color, fontsize = fontsize, ...)
         if (annotation_legend_bottom) {
-          elem = editGrob(elem, vp = viewport(just = "bottom", height = gtable_height(elem)))
           t = ifelse(is.null(labels_row), 4, 3) + 1
           b = 5
           l = 5
@@ -507,8 +506,8 @@ heatmap_motor = function(matrix, border_color, cellwidth, cellheight, tree_col, 
     if(!is.na2(legend)){
         elem = draw_legend(color, breaks, legend, fontsize = fontsize, ...)
         
-        t = ifelse(is.null(labels_row), 4, 3)
-        res = gtable_add_grob(res, elem, t = t, l = 5, b = 5, clip = "off", name = "legend")
+        t = ifelse(is.null(labels_row), 4, 3) + 1
+        res = gtable_add_grob(res, elem, t = t, l = 5, b = 4, clip = "off", name = "legend")
     }
     
     return(res)
